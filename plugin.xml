@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='utf-8'?>
+<plugin id="screen-plugin" version="1.0.0" xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android">
+    <name>screen-plugin</name>
+    <js-module name="ScreenShare" src="www/screen-plugin.js">
+        <clobbers target="ScreenShare" />
+    </js-module>
+	<platform name="android">
+		<config-file target="res/xml/config.xml" parent="/*">
+		  <feature name="ScreenShare">
+			<param name="android-package" value="com.lmr.screenshare.ScreenShare"/>
+		  </feature>
+		</config-file>
+		<!--用到的权限-->
+		<config-file target="AndroidManifest.xml" parent="/*">
+			<uses-permission android:name="android.permission.INTERNET" />
+			<uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+			<uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+			<uses-permission android:name="android.permission.READ_PHONE_STATE" />
+			<uses-permission android:name="android.permission.CALL_PHONE"/>
+			<uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+			<uses-permission android:name="android.permission.READ_LOGS" />
+			<uses-permission android:name="android.permission.RECORD_AUDIO" />
+			<uses-permission android:name="android.permission.CAMERA" />
+			<uses-feature android:name="android.hardware.Camera"/>
+			<uses-feature android:name="android.hardware.camera.autofocus" />
+		</config-file>
+		<!--设置service和activity -->
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+			<service
+				android:name=".service.PushService"
+				android:enabled="true"
+				android:exported="true" />
+			<!--屏幕共享-->
+			<activity
+				android:name="com.tencent.rtmp.video.TXScreenCapture$TXScreenCaptureAssistantActivity"
+				android:theme="@android:style/Theme.Translucent" />
+			<activity
+				android:name=".MediaPlayerActivity"
+				android:screenOrientation="landscape">
+				<intent-filter>
+					<action android:name="android.intent.action.MAIN" />
+
+					<category android:name="android.intent.category.DEFAULT" />
+				</intent-filter>
+			</activity>
+		</config-file>
+		<!--用到的java文件-->
+		<source-file src="src/android/ScreenShare.java" target-dir="src/com/screenshare/android"/>
+		<source-file src="src/android/MediaPlayerActivity.java" target-dir="src/com/screenshare/android"/>
+		<source-file src="src/android/tools/Constants.java" target-dir="src/com/screenshare/android/tools"/>
+		<source-file src="src/android/tools/CustomerHttpClient.java" target-dir="src/com/screenshare/android/tools"/>
+		<source-file src="src/android/tools/GetMsgThread.java" target-dir="src/com/screenshare/android/tools"/>
+		<source-file src="src/android/service/PushService.java" target-dir="src/com/screenshare/android/service"/>
+		<!-- 用到的包 -->
+		<source-file src="src/android/libs/LiteAVSDK_Professional_3.aar" target-dir="libs"/>
+		<!--用到的layout-->
+		<source-file src="src/android/res/layout/activity_media_player.xml" target-dir="res/layout"/>
+		<!--用到的图片和一个加载动画的xml文件-->
+		<source-file src="src/android/res/drawable/background.jpg" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/ic_launcher.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/loading_animation.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/loading_image0.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/loading_image1.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/loading_image2.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/loading_image3.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/loading_image4.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/loading_image5.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/loading_image6.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/loading_image7.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/logo.png" target-dir="res/drawable"/>
+
+    </platform>
+</plugin>

@@ -1,0 +1,11 @@
+{
+  "name": "screen-plugin",
+  "version": "1.0.0",
+  "description": "screen share",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "lmr",
+  "license": "ISC"
+}
